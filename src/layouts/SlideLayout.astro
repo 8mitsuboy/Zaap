@@ -85,12 +85,17 @@ const { title, postUrl } = frontmatter;
         text-transform: none;
         color: var(--slide-text);
       }
-      .reveal h2 {
-        font-size: 2.2rem;
+      .reveal h1 {
+        font-size: 2.8rem;
         font-weight: 700;
         margin-bottom: 0.8em;
         padding-left: 0.6em;
         border-left: 4px solid var(--slide-accent);
+      }
+      .reveal h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 0.8em;
       }
       .reveal h3 {
         font-size: 1.6rem;
@@ -99,15 +104,23 @@ const { title, postUrl } = frontmatter;
         margin-top: 0.8em;
         margin-bottom: 0.4em;
       }
+      .reveal h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--slide-text-muted);
+        margin-top: 0.8em;
+        margin-bottom: 0.2em;
+        text-transform: none;
+      }
 
       /* 本文 */
       .reveal p {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         line-height: 1.9;
         color: var(--slide-text-muted);
       }
       .reveal li {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         line-height: 2;
         color: var(--slide-text-muted);
         margin-bottom: 0.15em;
@@ -189,6 +202,16 @@ const { title, postUrl } = frontmatter;
       }
       .back-link:hover {
         background: rgba(196, 173, 108, 0.25);
+      }
+
+      /* リンク */
+      .reveal a {
+        color: var(--slide-accent);
+        text-decoration: none;
+      }
+      .reveal a:hover {
+        color: var(--slide-accent-hover);
+        text-decoration: underline;
       }
 
       /* ナビゲーション矢印を非表示 */
