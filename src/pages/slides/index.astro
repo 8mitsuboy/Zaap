@@ -10,7 +10,7 @@ interface SlideEntry {
 }
 
 const allSlides = Object.values(
-  import.meta.glob<SlideEntry>("./*.md", { eager: true }),
+  import.meta.glob<SlideEntry>("./**/*.md", { eager: true }),
 );
 
 const pageTitle = "スライド";
