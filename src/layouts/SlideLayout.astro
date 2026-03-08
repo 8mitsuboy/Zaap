@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import faviconImage from "../assets/favicon.png";
+
 interface Props {
   frontmatter: {
     title: string;
@@ -90,7 +93,7 @@ const { title, postUrl } = frontmatter;
         font-weight: 700;
         margin-bottom: 0.8em;
         padding-left: 0.6em;
-        border-left: 4px solid var(--slide-accent);
+        border-left: 8px solid var(--slide-accent);
       }
       .reveal h2 {
         font-size: 2.2rem;
@@ -158,7 +161,7 @@ const { title, postUrl } = frontmatter;
       /* コードブロック */
       .reveal pre {
         width: 100%;
-        font-size: 0.9rem;
+        font-size: 1.2rem;
         background: var(--slide-surface) !important;
         border: 1px solid var(--slide-border);
         border-radius: 10px;
@@ -230,7 +233,7 @@ const { title, postUrl } = frontmatter;
     </div>
 
     <div class="slide-brand">
-      <img class="slide-brand-icon" src="/favicon.png" alt="Zaap logo" />
+      <Image class="slide-brand-icon" src={faviconImage} alt="Zaap logo" width={24} height={24} />
       Zaap
     </div>
 
