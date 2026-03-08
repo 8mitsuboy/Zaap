@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 import preact from "@astrojs/preact";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -7,6 +7,9 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://bzine.netlify.app/",
   integrations: [preact()],
+  image: {
+    service: passthroughImageService(),
+  },
   vite: {
     plugins: [tailwindcss()],
   },
