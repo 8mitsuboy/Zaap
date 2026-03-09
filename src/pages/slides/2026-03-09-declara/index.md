@@ -18,7 +18,7 @@ postUrl: /posts/2026-03-09-declara/
 
 # 自己紹介
 
-<div style="display:flex; gap:2rem; align-items:flex-start;">
+<div style="display:flex; gap:2.5rem; align-items:flex-start;">
 <div style="flex:1;">
 
 ## 先延ばしの癖の酷い凝り性
@@ -39,10 +39,14 @@ postUrl: /posts/2026-03-09-declara/
 React, Next.js, AWS, Flutter など
 
 </div>
-<div style="flex-shrink:0; width:30%;">
-
-<img src="/slides/2026-03-08-declara/images/profile.jpeg" alt="長江明信のプロフィール写真" style="width:100%; height:420px; object-fit:cover; border-radius:12px;" />
-
+<div style="flex-shrink:0; width:38%;">
+<div class="js-scratch-card scratch-card" style="width:100%; height:520px; position:relative; border-radius:16px; overflow:hidden; cursor:crosshair;">
+<div class="scratch-card-under" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, var(--slide-surface) 0%, #252530 100%);">
+<img src="/slides/2026-03-09-declara/images/8mitsuboy.png" alt="8mitsuboy" style="width:65%; height:auto; filter:drop-shadow(0 0 24px rgba(196,173,108,0.5));" />
+<p style="margin-top:0.8rem; font-size:1.4rem; color:var(--slide-accent); font-weight:700;">8mitsuboy</p>
+</div>
+</div>
+<p style="text-align:center; font-size:0.85rem; color:var(--slide-text-subtle); margin-top:0.5rem;" class="scratch-hint">scratch the profileImage</p>
 </div>
 </div>
 
@@ -67,20 +71,18 @@ React, Next.js, AWS, Flutter など
 
 ---
 
-# 私の考える先延ばしの正体（怠惰ループ）
+# 私の考える先延ばしの正体
 
 ### 例.「引っ越したい」
 <br />
 
-1. やるべきことがわからない。順序がわからない。→ ゴールまでの過程がブラックボックス
-2. めんどくさくなる
-3. 何も進んでなくて落ち込む
-4. 落ち込んで現実逃避 →萎え戻り。ループ続行ｯ！
+やるべきことがわからない。順序もわからない。
+
+→ ゴールまでの過程が**ブラックボックス**だから動けない。
 
 <br />
 
 ### 俺は引っ越したい（新居で暮らしている状態になりたい）だけで <br /> 引越し業者の手配や住所変更とかしたくない！
-あれ？これってさ
 
 ---
 
@@ -109,36 +111,19 @@ if (isLoading) {
 
 **Whatだけ宣言 → HowはFrameworkが解決。**
 
----
-
-# 「〜したい」は理想の状態の宣言だった
-
-「引っ越したい」=「引っ越した状態になりたい」= **理想の状態の宣言**
-
-<br />
-
-Reactで `<Button>` と書くとき、
-開発者は「理想の状態を定義している」とは意識しない。
-ただ「ボタン置きたい」と書いた結果、宣言になっている。
-
-<br />
-
-日常の「〜したい」も同じ構造のはず。
-**自然な入力が、そのまま理想の状態の宣言になる。**
-
-→ ならAIにHowを任せる設計が成り立つ。
+→ 日常の「引っ越したい」も、Whatだけ宣言しているのと同じじゃないか？
 
 ---
 
-# ループから抜けられるのでは？
+# ブラックボックスを開ければ動けるのでは？
 
-俺も宣言するだけで、裏側でいい感じにやってくれないかな〜
+俺も「引っ越したい」って宣言するだけで、ブラックボックスが開いてくれないかな〜
 
 …さすがに全部やってくれる魔法はない。
 
 でも本当の敵は「作業そのもの」じゃなくて「何をすればいいかわからないこと」だった。
 
-**ブラックボックスを開けるだけなら、AIにできる！これでループ抜けられる！**
+**ブラックボックスを開けるだけなら、AIにできる！**
 
 ---
 
@@ -182,24 +167,6 @@ Reactで `<Button>` と書くとき、
 
 ---
 
-# 技術スタック
-
-- ### Flutter + Riverpod
-
-<br />
-
-- ### Drift (SQLite) で永続化
-
-<br />
-
-- ### Claude API でタスク生成
-
-<br />
-
-- ### DDDで層分離（Presentation / Domain / Data）
-
----
-
 # ブラックボックスを開けるだけじゃ足りない
 
 宣言してから達成するまでの**気持ちの変化**に沿ってUIを作った。
@@ -214,13 +181,14 @@ Reactで `<Button>` と書くとき、
 
 ---
 
-# ウキウキで使ってもらったら..
+# レビュー
+
+ウキウキで使ってもらってみたら..
+
+> 利用者） ちょうどいい理想状態の抽象度考えるのがむずくね？ 汎用的に使えないしメモ帳でいいや
 <br />
 
-利用者） ちょうどいい理想状態の抽象度考えるのがむずくね？ 汎用的に使えないしメモ帳でいいや
-<br />
-
-「〜したい」が理想の状態の宣言として成り立つのは、抽象度が絶妙な場合だけだったと言うことに気づいた..
+**「〜したい」= 理想の状態** が成り立つのは、抽象度が絶妙な場合だけだったと言うことに気づいた..
 
 <br />
 
@@ -236,21 +204,24 @@ Reactで `<Button>` と書くとき、
 
 ---
 
-# なぜ気づけなかったのか
+# ふりかえり
 
-エンジニアは「状態」を点として扱う。
-Reactのstateのようにある時点の確定した一つの値。
+特定の抽象度しか受け付けられないアプリ = **窮屈なアプリ = 使われないアプリ**
 
-Declaraの「宣言」もその感覚でモデリングしていた。
-→ 宣言の抽象度も一つ、と無意識に決めつけていた。
+<br />
 
-加えて自分が想定ユーザーだったため、自分の粒度でしか検証していなかった。
+### Try: 窮屈さの早期検知
 
-**ユーザーによって、宣言したい粒度は違う。**
 
-次のアプリ開発からは妥当性確認の観点として↓を使う：
+<div style="text-align:center;">
 
-> ### 「違う抽象度のインプットを想定したとき、このアプリは成り立つか？」
+## 開発者の無意識の前提を疑う
+
+</div>
+
+<br />
+
+例）Declara: 「入力の抽象度は一つ」という前提 → 特定の粒度しか刺さらなかった
 
 ---
 
@@ -277,8 +248,26 @@ Declaraの「宣言」もその感覚でモデリングしていた。
 - ### そういえばブラックボックスをいい感じにやってくれる魔法って、AIエージェントやん
 <br />
 
-- ### アプリが窮屈になっていないか確認するための、複数の抽象度のインプットを想定してみる
+- ### 開発者の無意識の前提を疑う—窮屈なアプリを避けるために
 
+
+---
+
+# 技術スタック
+
+- ### Flutter + Riverpod
+
+<br />
+
+- ### Drift (SQLite) で永続化
+
+<br />
+
+- ### Claude API でタスク生成
+
+<br />
+
+- ### DDDで層分離（Presentation / Domain / Data）
 
 ---
 
