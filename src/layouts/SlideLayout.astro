@@ -306,6 +306,31 @@ const { title, postUrl } = frontmatter;
         }
       }
 
+      /* スクラッチカード */
+      .scratch-card {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 2px solid var(--slide-border);
+      }
+      .scratch-hint {
+        transition: opacity 0.3s ease;
+        animation: hintPulse 2s ease-in-out infinite;
+      }
+      .scratch-card.revealed ~ .scratch-hint {
+        opacity: 0;
+      }
+      @keyframes hintPulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+      @keyframes revealGlow {
+        0% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+        50% { box-shadow: 0 0 60px 12px rgba(196, 173, 108, 0.5); }
+        100% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px 4px rgba(196, 173, 108, 0.2); }
+      }
+      .scratch-card.revealed {
+        animation: revealGlow 1s ease-out forwards;
+      }
+
     </style>
   </head>
   <body style="background: #17171c;">
@@ -387,6 +412,105 @@ const { title, postUrl } = frontmatter;
           center: false,
           slideNumber: true,
         });
+
+        // スクラッチカード（Reveal初期化後にセットアップ）
+        function initScratchCards() {
+          document.querySelectorAll(".js-scratch-card").forEach((card) => {
+            if (card.dataset.scratchInit) return;
+            card.dataset.scratchInit = "1";
+
+            // canvasを動的生成（markdownのHTML解析問題を回避）
+            const canvas = document.createElement("canvas");
+            canvas.className = "scratch-card-canvas";
+            canvas.style.cssText = "position:absolute;top:0;left:0;border-radius:16px;";
+            card.appendChild(canvas);
+
+            const ctx = canvas.getContext("2d");
+            const profileImg = new window.Image();
+            profileImg.crossOrigin = "anonymous";
+            profileImg.src = "/slides/2026-03-09-declara/images/profile.jpeg";
+
+            let isDrawing = false;
+            let totalPixels = 0;
+            const revealThreshold = 0.45;
+            let revealed = false;
+
+            function drawCover() {
+              // canvasではなく親要素のサイズを使用（より確実）
+              const cw = card.offsetWidth;
+              const ch = card.offsetHeight;
+              if (cw === 0 || ch === 0) return false;
+              canvas.width = cw;
+              canvas.height = ch;
+              canvas.style.width = cw + "px";
+              canvas.style.height = ch + "px";
+              const iw = profileImg.naturalWidth, ih = profileImg.naturalHeight;
+              const scale = Math.max(cw / iw, ch / ih);
+              const sw = iw * scale, sh = ih * scale;
+              ctx.drawImage(profileImg, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+              totalPixels = cw * ch;
+              return true;
+            }
+
+            profileImg.onload = () => {
+              if (!drawCover()) {
+                // まだサイズが0ならスライド遷移時にリトライ
+                Reveal.on("slidechanged", function handler() {
+                  if (drawCover()) Reveal.off("slidechanged", handler);
+                });
+              }
+            };
+
+            function getPos(e) {
+              const rect = canvas.getBoundingClientRect();
+              const scaleX = canvas.width / rect.width;
+              const scaleY = canvas.height / rect.height;
+              const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+              const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+              return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY,
+              };
+            }
+
+            function scratch(e) {
+              if (!isDrawing || revealed) return;
+              const pos = getPos(e);
+              ctx.globalCompositeOperation = "destination-out";
+              ctx.beginPath();
+              ctx.arc(pos.x, pos.y, 34, 0, Math.PI * 2);
+              ctx.fill();
+              checkReveal();
+            }
+
+            function checkReveal() {
+              if (revealed || totalPixels === 0) return;
+              const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+              let transparent = 0;
+              for (let i = 3; i < data.length; i += 4) {
+                if (data[i] === 0) transparent++;
+              }
+              if (transparent / totalPixels > revealThreshold) {
+                revealed = true;
+                canvas.style.transition = "opacity 0.6s ease";
+                canvas.style.opacity = "0";
+                card.classList.add("revealed");
+              }
+            }
+
+            canvas.addEventListener("mousedown", (e) => { isDrawing = true; scratch(e); });
+            canvas.addEventListener("mousemove", scratch);
+            canvas.addEventListener("mouseup", () => { isDrawing = false; });
+            canvas.addEventListener("mouseleave", () => { isDrawing = false; });
+            canvas.addEventListener("touchstart", (e) => { e.preventDefault(); isDrawing = true; scratch(e); }, { passive: false });
+            canvas.addEventListener("touchmove", (e) => { e.preventDefault(); scratch(e); }, { passive: false });
+            canvas.addEventListener("touchend", () => { isDrawing = false; });
+          });
+        }
+
+        // Reveal ready後に初期化、スライド遷移でも再チェック
+        Reveal.on("ready", initScratchCards);
+        Reveal.on("slidechanged", initScratchCards);
       });
     </script>
   </body>
