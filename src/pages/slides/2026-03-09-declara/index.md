@@ -154,7 +154,16 @@ Reactで `<Button>` と書くとき、
 </div>
 <div style="flex-shrink:0;">
 
-<img src="/slides/2026-03-08-declara/images/create_declaration_page.png" alt="Declara宣言入力画面" style="height:620px; width:auto; border-radius:24px; box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
+<iframe
+  width="349"
+  height="620"
+  src="https://www.youtube.com/embed/Kwgv2iGUPhU"
+  title="Declara のデモ動画"
+  style="border:none; border-radius:24px; box-shadow:0 8px 32px rgba(0,0,0,0.5); background:#000;"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
 
 </div>
 </div>
