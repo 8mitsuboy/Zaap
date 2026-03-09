@@ -34,11 +34,11 @@ const { title, postUrl } = frontmatter;
         --slide-text-subtle: #7e7e8a;
         --slide-accent: #c4ad6c;
         --slide-accent-hover: #d6c08a;
+        --slide-strong: #6fb6ff;
         --slide-surface: #1e1e24;
         --slide-border: #2e2e36;
         --slide-inline-code-bg: #2b2b32;
         --slide-font: "M PLUS Rounded 1c", sans-serif;
-        --slide-octagon: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
 
         --r-background-color: var(--slide-bg);
         --r-main-color: var(--slide-text);
@@ -84,7 +84,9 @@ const { title, postUrl } = frontmatter;
       }
 
       /* 見出し */
-      .reveal h1, .reveal h2, .reveal h3 {
+      .reveal h1,
+      .reveal h2,
+      .reveal h3 {
         text-transform: none;
         color: var(--slide-text);
       }
@@ -101,7 +103,7 @@ const { title, postUrl } = frontmatter;
         margin-bottom: 0.8em;
       }
       .reveal h3 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: var(--slide-accent);
         margin-top: 0.8em;
@@ -128,7 +130,8 @@ const { title, postUrl } = frontmatter;
         color: var(--slide-text-muted);
         margin-bottom: 0.15em;
       }
-      .reveal ul, .reveal ol {
+      .reveal ul,
+      .reveal ol {
         margin-top: 0.3em;
       }
 
@@ -147,16 +150,18 @@ const { title, postUrl } = frontmatter;
         left: 0;
         top: 50%;
         transform: translateY(-50%);
-        width: 10px;
-        height: 10px;
-        background: var(--slide-accent);
-        clip-path: var(--slide-octagon);
+        width: 16px;
+        height: 16px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M10 1.6 17 5.8v8.4L10 18.4 3 14.2V5.8L10 1.6Z' stroke='%23c4ad6c' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       /* strong */
-      .reveal li strong {
-        font-size: 1.3rem;
-        color: var(--slide-text);
+      .reveal strong {
+        color: var(--slide-strong);
+        font-weight: 700;
       }
 
       /* コードブロック */
@@ -241,6 +246,66 @@ const { title, postUrl } = frontmatter;
       .reveal .controls {
         display: none;
       }
+
+      /* 自己紹介カード演出（常時 + hover） */
+      @keyframes introAuraPulse {
+        0% {
+          opacity: 0.25;
+          transform: scale(0.98);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.02);
+        }
+        100% {
+          opacity: 0.25;
+          transform: scale(0.98);
+        }
+      }
+      .intro-special-card {
+        --tilt-x: 0deg;
+        --tilt-y: 0deg;
+        transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+        transform-style: preserve-3d;
+        transition: transform 180ms ease-out, box-shadow 220ms ease;
+        isolation: isolate;
+      }
+      .intro-special-card::before {
+        content: "";
+        position: absolute;
+        inset: -10px;
+        border-radius: 34px;
+        background: radial-gradient(circle at 12% 10%, rgba(111, 182, 255, 0.28), rgba(111, 182, 255, 0) 35%),
+          radial-gradient(circle at 86% 85%, rgba(196, 173, 108, 0.24), rgba(196, 173, 108, 0) 40%);
+        z-index: -1;
+        filter: blur(8px);
+        animation: introAuraPulse 4.8s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .intro-special-card:hover {
+        box-shadow: 0 26px 54px rgba(0, 0, 0, 0.36);
+      }
+      .intro-special-photo {
+        transform: translateZ(16px);
+      }
+      .intro-special-badge {
+        transform: translateZ(40px);
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      }
+      .intro-special-card:hover .intro-special-badge {
+        transform: translateZ(46px) translateY(-4px) scale(1.03);
+        border-color: rgba(111, 182, 255, 0.48);
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.36);
+      }
+      @media (hover: none) {
+        .intro-special-card {
+          transform: none !important;
+        }
+        .intro-special-badge {
+          transform: none !important;
+        }
+      }
+
     </style>
   </head>
   <body style="background: #17171c;">
@@ -253,13 +318,23 @@ const { title, postUrl } = frontmatter;
     </div>
 
     <div class="slide-brand">
-      <Image class="slide-brand-icon" src={faviconImage} alt="Zaap logo" width={24} height={24} />
+      <Image
+        class="slide-brand-icon"
+        src={faviconImage}
+        alt="Zaap logo"
+        width={24}
+        height={24}
+      />
       Zaap
     </div>
 
-    {postUrl && (
-      <a href={postUrl} class="back-link">← 記事に戻る</a>
-    )}
+    {
+      postUrl && (
+        <a href={postUrl} class="back-link">
+          ← 記事に戻る
+        </a>
+      )
+    }
 
     <script is:inline>
       // Markdownの <hr> を境界にしてコンテンツを <section> に分割
@@ -278,6 +353,29 @@ const { title, postUrl } = frontmatter;
         }
         slidesRoot.appendChild(section);
         container.remove();
+      })();
+
+      (function enableTiltCards() {
+        const cards = document.querySelectorAll(".js-tilt-card");
+        cards.forEach((card) => {
+          const handleMove = (event) => {
+            const rect = card.getBoundingClientRect();
+            const px = (event.clientX - rect.left) / rect.width;
+            const py = (event.clientY - rect.top) / rect.height;
+            const rotateY = (px - 0.5) * 10;
+            const rotateX = (0.5 - py) * 8;
+            card.style.setProperty("--tilt-x", `${rotateX.toFixed(2)}deg`);
+            card.style.setProperty("--tilt-y", `${rotateY.toFixed(2)}deg`);
+          };
+
+          const reset = () => {
+            card.style.setProperty("--tilt-x", "0deg");
+            card.style.setProperty("--tilt-y", "0deg");
+          };
+
+          card.addEventListener("mousemove", handleMove);
+          card.addEventListener("mouseleave", reset);
+        });
       })();
 
       import("/reveal/reveal.esm.js").then(({ default: Reveal }) => {
