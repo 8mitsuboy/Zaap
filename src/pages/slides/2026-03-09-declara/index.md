@@ -41,9 +41,10 @@ React, Next.js, AWS, Flutter など
 </div>
 <div style="flex-shrink:0; width:38%;">
 <div class="js-scratch-card scratch-card" style="width:100%; height:520px; position:relative; border-radius:16px; overflow:hidden; cursor:crosshair;">
-<div class="scratch-card-under" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, var(--slide-surface) 0%, #252530 100%);">
-<img src="/slides/2026-03-09-declara/images/8mitsuboy.png" alt="8mitsuboy" style="width:65%; height:auto; filter:drop-shadow(0 0 24px rgba(196,173,108,0.5));" />
-<p style="margin-top:0.8rem; font-size:1.4rem; color:var(--slide-accent); font-weight:700;">8mitsuboy</p>
+<div class="scratch-card-under" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding-top:3rem; background:linear-gradient(135deg, var(--slide-surface) 0%, #252530 100%); gap:0.4rem;">
+<img src="/slides/2026-03-09-declara/images/8mitsuboy.png" alt="8mitsuboy" style="width:42%; height:auto; filter:drop-shadow(0 0 24px rgba(196,173,108,0.5));" />
+<p style="margin-top:0.1rem; margin-bottom:0.1rem; font-size:1.3rem; color:var(--slide-accent); font-weight:700;">8mitsuboy</p>
+<span style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.35rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:10px; border:1px solid var(--slide-border);"><img src="/slides/2026-03-09-declara/images/JSTQB.jpg" alt="JSTQB Certified Tester Foundation Level" style="width:40px; height:40px; object-fit:contain; border-radius:4px; background:#fff;" /><span style="font-size:0.75rem; color:var(--slide-text-muted); font-weight:600; line-height:1.3;">JSTQB Certified Tester<br/>Foundation Level</span></span>
 </div>
 </div>
 <p style="text-align:center; font-size:0.85rem; color:var(--slide-text-subtle); margin-top:0.5rem;" class="scratch-hint">scratch the profileImage</p>
