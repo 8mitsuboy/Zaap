@@ -273,10 +273,6 @@ if (isLoading) {
 
 - ### Claude API でタスク生成
 
-<br />
-
-- ### DDDで層分離（Presentation / Domain / Data）
-
 ---
 
 <div style="min-height:648px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
