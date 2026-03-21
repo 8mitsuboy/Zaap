@@ -50,6 +50,19 @@ const displayDate = new Date(frontmatter.pubDate).toLocaleDateString("ja-JP", {
     />
   )}
 
+  <!-- 参考URL -->
+  {frontmatter.references && (
+    <div class="mb-8 text-sm text-bzine-light-text-muted dark:text-bzine-text-muted">
+      <span class="font-medium">参考: </span>
+      {frontmatter.references.map((ref: { url: string; label: string }, i: number) => (
+        <>
+          {i > 0 && <span>、</span>}
+          <a href={ref.url} target="_blank" rel="noopener noreferrer" class="text-bzine-accent hover:underline">{ref.label}</a>
+        </>
+      ))}
+    </div>
+  )}
+
   <!-- Cornell Notes レイアウト + prose-bzine タイポグラフィ -->
   <div class="cornell-notes">
     <div class="content prose-bzine">
