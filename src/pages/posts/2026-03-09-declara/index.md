@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: ../../../layouts/MarkdownPostLayout.astro
 title: "引っ越したいだけで、住所変更したいわけじゃない 〜宣言的プログラミングで先延ばし人間を救いたい〜"
 pubDate: 2026-03-09
 description: "先延ばしの正体は怠惰ではなくブラックボックスかもしれない。宣言的プログラミングの発想をタスク管理に持ち込んでみた話。"

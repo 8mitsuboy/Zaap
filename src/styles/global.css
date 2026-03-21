@@ -230,9 +230,15 @@ html:not(.dark) .prose-bzine blockquote {
   padding-left: 1.5rem;
 }
 
-.cornell-notes .content ul,
+.cornell-notes .content ul {
+  padding-left: 0;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
 .cornell-notes .content ol {
   padding-left: 0;
+  list-style-type: decimal;
   list-style-position: inside;
 }
 
