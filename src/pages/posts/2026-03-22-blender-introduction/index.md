@@ -4,7 +4,7 @@ title: "Blender入門 基本操作"
 pubDate: 2026-03-22
 description: "Blenderを使い始めたので、基本的な操作を作成者の要求から書いてみた"
 author: "はちみつぼーい"
-tags: ["Blender", "3DCG", "入門"]
+tags: ["Blender", "基本操作"]
 image:
   url: /posts/2026-03-22-blender-introduction/image1.png
   alt: "Blenderで作ったモデル"

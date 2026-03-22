@@ -4,7 +4,7 @@ title: "Blender学習 シェーダ関連"
 pubDate: 2026-03-23
 description: ""
 author: "はちみつぼーい"
-tags: ["Blender", "3DCG", "入門"]
+tags: ["Blender", "シェーダー", "基本操作"]
 image:
   url: /posts/2026-03-23-blender-2/thumbnail.png
   alt: "Blenderのシェーダーエディタ"

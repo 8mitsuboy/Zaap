@@ -126,7 +126,7 @@ html:not(.dark) .cornell-notes .content hr {
 }
 
 .cornell-notes .content {
-  max-width: 700px;
+  max-width: 860px;
   margin-left: 260px;
 }
 
@@ -240,6 +240,36 @@ html:not(.dark) .prose-bzine blockquote {
   padding-left: 0;
   list-style-type: decimal;
   list-style-position: inside;
+}
+
+.cornell-notes .content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}
+
+.cornell-notes .content th,
+.cornell-notes .content td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-bzine-border);
+  text-align: left;
+}
+
+.cornell-notes .content th {
+  background-color: var(--color-bzine-surface);
+  font-weight: 600;
+  color: var(--color-bzine-accent);
+}
+
+html:not(.dark) .cornell-notes .content th {
+  background-color: var(--color-bzine-light-surface);
+  border-color: var(--color-bzine-light-border);
+  color: #9a8a50;
+}
+
+html:not(.dark) .cornell-notes .content td {
+  border-color: var(--color-bzine-light-border);
 }
 
 .prose-bzine li {
