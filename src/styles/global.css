@@ -231,15 +231,23 @@ html:not(.dark) .prose-bzine blockquote {
 }
 
 .cornell-notes .content ul {
-  padding-left: 0;
+  padding-left: 1.5rem;
   list-style-type: disc;
-  list-style-position: inside;
 }
 
 .cornell-notes .content ol {
-  padding-left: 0;
+  padding-left: 1.5rem;
   list-style-type: decimal;
-  list-style-position: inside;
+}
+
+.cornell-notes .content li {
+  margin-bottom: 0.4rem;
+}
+
+.cornell-notes .content li > ul,
+.cornell-notes .content li > ol {
+  margin-top: 0.25rem;
+  padding-left: 1.5rem;
 }
 
 .cornell-notes .content table {
