@@ -1,0 +1,74 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: "パーティクルで生成した複数のヘアーをランダムに色分けしたい"
+pubDate: 2026-03-27
+description: ""
+author: "はちみつぼーい"
+tags: ["Blender", "シェーディング", "マテリアル", "パーティクル", "ヘアー"]
+image:
+  url: /posts/2026-03-27-shading/thumbnail.png
+  alt: "パーティクル（ヘアー）にランダムな色をつけるシェーダーノードの設定"
+references:
+  - url: https://www.udemy.com/course/blenderaquarium/learn/lecture/52968061#content
+    label: "アクアリウム_24"
+---
+
+import LinkCard from '../../../components/LinkCard.astro'
+
+<div class="callout-cue">
+
+**パーティクルで生成した複数のヘアーをランダムに色分けしたい**
+
+</div>
+
+前回の記事で頑張ってヘアーを立たせることには成功！
+だけど↓のように単一色だと味気ない..
+
+<br />
+
+![単一マテリアルのプリンシプルBSDFノード設定](/posts/2026-03-27-shading/single-material.png)
+
+<br />
+
+いろんな色を設定したいんだよ〜
+
+<br />
+
+手順
+1. 一旦マテリアル出力以外のノードを削除
+2. オブジェクト情報、カラーランプ、ディフューズBSDFノードを追加
+3. オブジェクト情報でランダムからカラーランプに繋ぐ
+4. カラーランプで、表現したい色の数だけ新規カラーを追加し色を設定
+5. カラーランプのカラーからディフューズBSDFのカラーに繋ぐ
+
+今回は3色設定してみたよ
+
+<br />
+
+![パーティクル（ヘアー）にランダムな色をつけるシェーダーノードの設定](/posts/2026-03-27-shading/thumbnail.png)
+
+---
+
+<div class="callout-cue">
+
+**オブジェクト情報ノードとは**
+</div>
+
+マテリアルが適用されているオブジェクト自身の情報を取得するノード。
+今回だと、nidleというマテリアルを設定している全てのヘアーが対象になる
+
+全てのヘアーに対してランダム値が一意に設定されて、そのヘアーに対してカラーランプで色をつけている！
+
+<LinkCard url="https://docs.blender.org/manual/ja/dev/render/shader_nodes/input/object_info.html" />
+
+
+
+
+
+---
+
+<div class="callout-summary">
+
+**まとめ**:
+
+</div>
