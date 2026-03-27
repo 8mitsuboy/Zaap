@@ -11,20 +11,19 @@ const allPosts = Object.values(
     new Date(a.frontmatter.pubDate).getTime(),
 );
 
-const pageTitle = "学習ブログ";
+const pageTitle = "Log";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="max-w-2xl">
     {
-      allPosts.map((post) => (
+      allPosts.map((post, index) => (
         <BlogPost
           url={post.url}
           title={post.frontmatter.title}
-          description={post.frontmatter.description}
           pubDate={post.frontmatter.pubDate}
-          image={post.frontmatter.image}
           tags={post.frontmatter.tags}
+          isLast={index === allPosts.length - 1}
         />
       ))
     }
