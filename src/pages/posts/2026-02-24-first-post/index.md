@@ -7,7 +7,7 @@ author: "はちみつぼーい"
 image:
   url: "https://docs.astro.build/assets/rose.webp"
   alt: "ピンク色に輝く暗い背景に浮かぶAstroのロゴ。"
-tags: ["astro", "ブログ"]
+tags: ["Astro", "ブログ"]
 hasSlide: true
 ---
 
