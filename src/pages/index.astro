@@ -6,7 +6,7 @@ import type { Post } from "../types";
 const pageTitle = "Zaap";
 
 const allPosts = Object.values(
-  import.meta.glob<Post>("./posts/*/index.md", { eager: true }),
+  import.meta.glob<Post>("./posts/*/index.{md,mdx}", { eager: true }),
 )
   .sort(
     (a, b) =>
