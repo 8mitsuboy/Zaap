@@ -1,0 +1,70 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { frontmatter } = Astro.props;
+
+const displayDate = new Date(frontmatter.pubDate).toLocaleDateString("ja-JP", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <!-- メタ情報 -->
+  <div class="flex items-center gap-3 text-sm text-bzine-light-text-muted dark:text-bzine-text-muted mb-4">
+    <time>{displayDate}</time>
+    <span>&middot;</span>
+    <span>{frontmatter.author}</span>
+  </div>
+
+  <!-- タグ -->
+  <div class="flex flex-wrap gap-2 mb-6">
+    {
+      frontmatter.tags.map((tag: string) => (
+        <a
+          href={`/tags/${tag}`}
+          class="px-3 py-1 rounded-full text-xs font-medium bg-bzine-accent/15 text-bzine-accent hover:bg-bzine-accent/25 transition-colors no-underline"
+        >
+          {tag}
+        </a>
+      ))
+    }
+    {frontmatter.hasSlide && (
+      <a
+        href={`/slides/${Astro.url.pathname.split("/").filter(Boolean).pop()}/`}
+        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-bzine-accent/15 text-bzine-accent hover:bg-bzine-accent/25 transition-colors no-underline"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" /></svg>
+        スライドで見る
+      </a>
+    )}
+  </div>
+
+  <!-- ヒーロー画像 -->
+  {frontmatter.image && (
+    <img
+      src={frontmatter.image.url}
+      alt={frontmatter.image.alt}
+      class="w-full rounded-xl mb-8 aspect-video object-cover"
+    />
+  )}
+
+  <!-- 参考URL -->
+  {frontmatter.references && (
+    <div class="mb-8 text-sm text-bzine-light-text-muted dark:text-bzine-text-muted">
+      <span class="font-medium">参考: </span>
+      {frontmatter.references.map((ref: { url: string; label: string }, i: number) => (
+        <>
+          {i > 0 && <span>、</span>}
+          <a href={ref.url} target="_blank" rel="noopener noreferrer" class="text-bzine-accent hover:underline">{ref.label}</a>
+        </>
+      ))}
+    </div>
+  )}
+
+  <!-- 全幅コンテンツ -->
+  <div class="prose-bzine">
+    <slot />
+  </div>
+</BaseLayout>
