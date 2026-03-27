@@ -280,6 +280,10 @@ html:not(.dark) .cornell-notes .content td {
   border-color: var(--color-bzine-light-border);
 }
 
+.prose-bzine p {
+  margin-bottom: 1.25em;
+}
+
 .prose-bzine li {
   margin-bottom: 0.25rem;
 }
