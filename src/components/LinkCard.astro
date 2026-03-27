@@ -22,7 +22,7 @@ if (!title) {
     const match = html.match(/<title[^>]*>([^<]+)<\/title>/i);
     title = match ? match[1].trim() : url;
   } catch {
-    title = url;
+    title = hostname;
   }
 }
 ---
