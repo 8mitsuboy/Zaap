@@ -22,9 +22,15 @@
 | Prop | 型 | 必須 | 説明 |
 |------|----|------|------|
 | `url` | `string` | ✅ | リンク先URL |
-| `title` | `string` | ✅ | リンクのタイトル |
+| `title` | `string` | ❌ | リンクのタイトル。省略するとビルド時にURLからfetchして`<title>`タグを取得 |
 
 ドメイン名はURLから自動抽出して表示する（`new URL(url).hostname`）。
+
+### タイトル自動取得の挙動
+
+- `title` が指定されていない場合、ビルド時に `fetch(url)` でHTMLを取得し `<title>` タグの内容を使用する
+- fetch失敗時（ネットワークエラー・タイムアウト等）はURLをそのままフォールバック表示する
+- fetchはビルド時のみ（SSG）。実行時には発生しない
 
 ### 表示形式（V3ベース）
 
@@ -88,6 +94,5 @@ import LinkCard from '../../../components/LinkCard.astro'
 
 ## スコープ外
 
-- OGP情報の自動取得（サーバーサイドfetchが必要なため対象外）
-- `description` prop（今回は不要）
+- OGP画像・descriptionの自動取得（今回は不要）
 - 絵文字アイコン対応（将来の拡張候補）
