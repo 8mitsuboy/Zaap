@@ -1,0 +1,343 @@
+---
+layout: ../../../layouts/ArticlePostLayout.astro
+title: "Astroで作っている記事にコンポーネントを使いまわしたい"
+pubDate: 2026-03-27
+description: ""
+author: "はちみつぼーい"
+tags: ["Astro", "mdx"]
+---
+
+import LinkCard from '../../../components/LinkCard.astro'
+
+## 背景・課題
+
+感謝しかないです 先人たちの情報っていうのは
+
+<br />
+
+最近記事を書く中で、参考にさせていただいた記事のURLを挿入することが増えてきました。
+
+ただ私の記事はAstroをベースにしたMarkdwonファイルで作成されているので、どうしてもリンクカードの表現が↓みたいにしょぼくなってしまうんですね
+
+<br />
+
+```md
+[参考URL](https://zaap-dev.netlify.app/)
+```
+
+<br />
+
+[参考URL](https://zaap-dev.netlify.app/)
+
+<br />
+
+これじゃあ感謝が伝わんない！
+
+もっとリッチなリンクカードコンポーネントを作ってmdファイルに埋め込みたい..！
+
+汎用的に考えるなら、Astroのコンポーネントをmdファイルに埋め込みたい..！
+
+ぶっちゃけ他の記事で使わないようなコンポーネントなら、mdファイル内で html要素で構築できます。
+が！今回のように他の記事でも使い回すことを考えるとイけてない。
+
+ということで前置きが長くなりましたが↓のユーザーストーリーに応えられる方法を共有したいと思います。
+
+> Astroをベースとした記事を書いているユーザーとして、複数の記事（Markdwonファイル）でコンポーネントを使いまわしたい。なぜなら毎回Markdownファイルでhtml要素でコンポーネントを作るのは手間だから。
+
+感謝を伝えるリンクカードを毎回書くのを手間だと考えている時点で自分の浅さが出ている気がしますがまあいいでしょう
+
+
+## 解決策
+
+**mdxを使おうぜ！**
+
+mdxはJSXが利用できるmdxです。本記事ではJSXに詳しく触れませんが、Reactとかでコンポーネントを作るときのあれです
+
+<LinkCard url="https://typescriptbook.jp/reference/jsx" />
+
+Astroではインテグレーションという仕組みで、サイト内で他のフレームワーク（Reactや今回利用するmdx）を扱えるので、これを活かしてみたいと思います。
+
+### 1. サイト内でmdxを利用できるようにパッケージをインポート
+
+```bash
+npx astro add mdx
+```
+
+### 2. astro.config.mjsでmdxを利用するように設定を修正
+
+```mjs
+
+export default defineConfig({
+  site: "https://bzine.netlify.app/",
+  integrations: [mdx()], // ← この行を追加（元々integrationsがある場合はmdx()を要素に追加するだけでOK）
+
+```
+
+### 3. コンポーネントを作成する
+
+↓はこのサイトで新しく利用するようになったリンクカードコンポーネントの例です
+
+
+
+<details>
+
+<summary>リンクカードコンポーネントのコード例</summary>
+
+```astro
+---
+interface Props {
+  url: string;
+  title?: string;
+}
+
+const { url, title: titleProp } = Astro.props;
+
+// "DOCS · BLENDER.ORG" 形式に整形（サブドメインがあれば分離）
+const hostname = new URL(url).hostname.replace(/^www\./, "");
+const parts = hostname.split(".");
+const subdomain = parts.length > 2 ? parts[0].toUpperCase() : null;
+const mainDomain = (parts.length > 2 ? parts.slice(1) : parts)
+  .join(".")
+  .toUpperCase();
+const domainLabel = subdomain ? `${subdomain} · ${mainDomain}` : mainDomain;
+
+let title = titleProp;
+
+if (!title) {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+    const html = await res.text();
+    const match = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+    title = match ? match[1].trim() : url;
+  } catch {
+    title = hostname;
+  }
+}
+---
+
+<div class="link-card-wrap">
+  <div class="thanks-badge">参考にさせていただきます 🙏</div>
+  <span class="spark s1" aria-hidden="true">✦</span>
+  <span class="spark s2" aria-hidden="true">⋆</span>
+  <span class="spark s3" aria-hidden="true">✦</span>
+  <span class="spark s4" aria-hidden="true">⋆</span>
+  <span class="spark s5" aria-hidden="true">✦</span>
+  <a href={url} target="_blank" rel="noopener noreferrer" class="link-card">
+    <div class="link-card-body">
+      <div class="link-card-domain">{domainLabel}</div>
+      <div class="link-card-title">{title}</div>
+    </div>
+    <svg
+      class="link-card-icon"
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+      <polyline points="15 3 21 3 21 9"></polyline>
+      <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .link-card-wrap {
+    position: relative;
+    padding-top: 36px;
+    margin: 1rem 0;
+  }
+
+  /* ありがとうバッジ */
+  .thanks-badge {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #17171c;
+    background: #c4ad6c;
+    padding: 2px 10px;
+    border-radius: 99px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+      opacity 0.25s,
+      transform 0.25s;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  .thanks-badge::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    right: 16px;
+    border: 4px solid transparent;
+    border-top-color: #c4ad6c;
+  }
+  :global(html:not(.dark)) .thanks-badge {
+    color: #fefdfb;
+    background: #9a8a50;
+  }
+  :global(html:not(.dark)) .thanks-badge::after {
+    border-top-color: #9a8a50;
+  }
+
+  /* スパークル */
+  .spark {
+    position: absolute;
+    pointer-events: none;
+    font-size: 0.9rem;
+    color: #c4ad6c;
+    opacity: 0;
+    top: 36px;
+    z-index: 10;
+  }
+  :global(html:not(.dark)) .spark {
+    color: #9a8a50;
+  }
+  .s1 {
+    left: 10%;
+  }
+  .s2 {
+    left: 28%;
+  }
+  .s3 {
+    left: 50%;
+  }
+  .s4 {
+    left: 70%;
+  }
+  .s5 {
+    left: 88%;
+  }
+
+  /* カード本体 */
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 10px;
+    background: #17171c;
+    border: 1px solid #2e2e36;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition:
+      border-color 0.3s,
+      background 0.3s;
+  }
+  :global(html:not(.dark)) .link-card {
+    background: #fefdfb;
+    border-color: #e4e0d6;
+  }
+  .link-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #c4ad6c, transparent);
+  }
+  :global(html:not(.dark)) .link-card::before {
+    background: linear-gradient(90deg, #9a8a50, transparent);
+  }
+
+  .link-card-body {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .link-card-domain {
+    font-size: 0.72rem;
+    color: #7e7e8a;
+    letter-spacing: 0.05em;
+    margin-bottom: 3px;
+  }
+  :global(html:not(.dark)) .link-card-domain {
+    color: #6e6b62;
+  }
+
+  .link-card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #dcdce2;
+    transition: color 0.3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  :global(html:not(.dark)) .link-card-title {
+    color: #1a1a1e;
+  }
+
+  .link-card-icon {
+    flex-shrink: 0;
+    color: #c4ad6c;
+  }
+  :global(html:not(.dark)) .link-card-icon {
+    color: #9a8a50;
+  }
+
+  /* ホバー: バッジ */
+  .link-card-wrap:hover .thanks-badge {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ホバー: スパークルアニメーション */
+  .link-card-wrap:hover .spark {
+
+```
+
+
+</details>
+
+<br />
+
+### 4. 作成したコンポーネントを.mdxファイルでインポートして表示させる
+
+
+```mdx
+
+---
+メタデータ
+---
+
+import LinkCard from 'components/LinkCard.astro'
+
+記
+事
+本
+文
+
+...は以下記事を参考。
+<LinkCard ulr="https://zaap-dev.netlify.app/">
+
+
+```
+
+今回リンクカードにキラキラと感謝バッジを出すようにしてみました。
+
+cssとか何もわからんなので、今回リンクカードのデザインに関するブレインストーミングや設計・実装はclaude codeのプラグイン「superpowers」を使ってやってみました。
+
+ブレインストーミングの段階で、向こう側からデザイン案を複数ブラウザ上で表示してくれて、視覚的にコンポーネントのデザインがサクサク決められてすげぇえなと思いました。
+
+![superpowersのブレインストーミングでLinkCardのデザイン案を提示してもらっている様子](/posts/2026-03-27-mdx/brainstorming-linkcard.png)
+
+それとこの記事書いている途中で気づいたんですけど、本家Astro様のサイトでもmdx導入手順記載されていました。
+
+<LinkCard url="https://docs.astro.build/ja/guides/integrations-guide/mdx/" />
+
+## まとめ
+
+Astroをベースとした記事を書いているユーザーとして、複数の記事（Markdwonファイル）でコンポーネントを使いまわしたいなら、mdxを試してみよう！
+
+おまけ： superpowersプラグインの「/brainstorming」スキル壁打ちにすごく良い！
+
