@@ -1,46 +1,18 @@
-# Astro Starter Kit: Basics
+# ブログ運用方針
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+## 記事の粒度
+- **1要求1記事**を基本とする
+- 「〇〇したい」という単位で切る
+    - ↑のような要求を満たすために必要になった周辺知識も記事内のキーワードとして追加する
+- 1日の学習まとめはしない
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## テンプレートの使い分け
+- 自分向けのログ → **cornell**（雑でいい）
+- 整理して共有したいとき → **article**
 
-## 🚀 Project Structure
+## ログモードのルール
+- タイトルは考えない。やりたかったことをそのまま書く
+- 画像・図は任意。なくていい
+- 書くコストよりinputに全振りする
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.png
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+運用方針は、運用にモヤモヤを感じたら都度AIに相談しつつ柔軟に変えていく
