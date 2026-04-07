@@ -1,0 +1,76 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: "別オブジェクトで作った耳を、顔メッシュを跨いで左右対称に配置したい"
+pubDate: 2026-04-05
+description: ""
+author: "はちみつぼーい"
+tags: ["Blender", "モディファイアー", "Automirror"]
+references:
+  - url:
+    label: ""
+---
+<div class="callout-cue">
+**Mirrorモディファイアを別オブジェクトに対して適用して、パーツを左右対称に設置したい**
+</div>
+
+### 背景
+顔メッシュとは別オブジェクトとして耳を作成した。
+耳を左右対称に配置したいが、耳オブジェクト自体にMirrorモディファイアをかけても、耳自身の原点を基準にミラーされてしまう。
+顔の中心を基準にミラーしたい。
+
+### 解決策
+
+**Auto Mirror アドオン** と **Mirrorモディファイアのミラーオブジェクト指定** を組み合わせる。
+
+#### 1. Auto Mirror アドオンを有効にする
+
+プリファレンス > アドオン で「Auto Mirror」を検索してインストール・有効化する。
+
+![Auto MirrorアドオンをBlenderプリファレンスで有効化した画面](/posts/2026-04-05-blender-mirror-ear-placement/01-auto-mirror-addon.png)
+
+#### 2. 耳オブジェクトをX軸で半分に切る
+
+耳オブジェクトを選択した状態で、サイドバー（N）> Auto Mirror パネルを開く。
+軸を **X** に設定し、**Cut and Mirror** と **Use Clip** にチェックを入れて **AutoMirror** を実行する。
+これで耳が左半分だけになる。
+
+![耳オブジェクトにAuto Mirrorを適用する前の状態](/posts/2026-04-05-blender-mirror-ear-placement/02-ear-automirror.png)
+
+![Auto Mirror適用後、耳が片側だけになった状態](/posts/2026-04-05-blender-mirror-ear-placement/03-ear-shape.png)
+
+#### 3. MirrorモディファイアのミラーオブジェクトをHeadに設定する
+
+Auto Mirror を実行すると、耳オブジェクトに自動でMirrorモディファイアが追加される。
+プロパティ > モディファイアー > Mirror の **ミラーオブジェクト** に、顔メッシュ（Cube.003）を指定する。
+
+これにより、顔メッシュの原点を基準に耳が左右対称にミラーされる。
+
+![MirrorモディファイアのミラーオブジェクトにHeadを指定し、耳が左右対称に配置された状態](/posts/2026-04-05-blender-mirror-ear-placement/04-mirror-result.png)
+
+#### 4. 完成
+
+耳が顔の中心を基準に左右対称に配置できた。
+
+![耳が左右対称に配置された完成状態](/posts/2026-04-05-blender-mirror-ear-placement/05-final.png)
+
+---
+
+<div class="callout-cue">
+**オブジェクトを半分に切らずに左右対称に配置したい**
+</div>
+
+↑の例だとオブジェクトを半分に切る必要があるが、切らずに左右対称に配置したいこともある。
+
+1. 左右対称に配置したいオブジェクトを選択して、プロパティ > モディファイアー > Mirror 
+2. **ミラーオブジェクト** に、顔オブジェクトを指定する
+
+左右に配置したい針のオブジェクトが、↑とは異なり半分に切られずに配置される！
+
+| ミラーオブジェクト指定前 | ミラーオブジェクト指定後 |
+|---|---|
+| ![ミラーオブジェクト未指定の状態](/posts/2026-04-05-blender-mirror-ear-placement/06-mirror-before.png) | ![ミラーオブジェクト指定後、左右対称に配置された状態](/posts/2026-04-05-blender-mirror-ear-placement/07-mirror-after.png) |
+
+---
+<div class="callout-summary">
+**まとめ**: Auto Mirrorを使えば、簡単に別オブジェクトを基準に左右対称配置できる！ 左右対称配置にしたいオブジェクトを半分に切りたくなければ、ミラーモディファイアーからミラーオブジェクトを選択する！
+</div>
