@@ -1,0 +1,19 @@
+<svg width="900" height="520" viewBox="0 0 900 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="520" rx="24" fill="#1E1E24"/>
+  <text x="54" y="76" fill="#F3D87A" font-size="28" font-weight="700" font-family="Arial, sans-serif">境界はバグが出やすい</text>
+  <text x="54" y="116" fill="#D7D7DD" font-size="20" font-family="Arial, sans-serif">「5000円以上は送料無料」の境目を見る</text>
+
+  <line x1="450" y1="186" x2="450" y2="376" stroke="#F3D87A" stroke-width="6" stroke-linecap="round"/>
+  <text x="450" y="170" text-anchor="middle" fill="#F3D87A" font-size="22" font-weight="700" font-family="Arial, sans-serif">境界</text>
+
+  <rect x="78" y="212" width="280" height="152" rx="24" fill="#2F3648" stroke="#6A7DA8" stroke-width="3"/>
+  <text x="218" y="276" text-anchor="middle" fill="#FFFFFF" font-size="46" font-weight="700" font-family="Arial, sans-serif">4999円</text>
+  <text x="218" y="326" text-anchor="middle" fill="#D7D7DD" font-size="24" font-family="Arial, sans-serif">送料 500円</text>
+
+  <rect x="542" y="212" width="280" height="152" rx="24" fill="#2B4038" stroke="#4C9D80" stroke-width="3"/>
+  <text x="682" y="276" text-anchor="middle" fill="#FFFFFF" font-size="46" font-weight="700" font-family="Arial, sans-serif">5000円</text>
+  <text x="682" y="326" text-anchor="middle" fill="#D7D7DD" font-size="24" font-family="Arial, sans-serif">送料無料</text>
+
+  <text x="450" y="438" text-anchor="middle" fill="#FFFFFF" font-size="24" font-weight="700" font-family="Arial, sans-serif">3000円だけ確認しても境界のバグは見えない</text>
+  <text x="450" y="476" text-anchor="middle" fill="#B4B4BE" font-size="20" font-family="Arial, sans-serif">4999円と5000円の違いを狙って確認する</text>
+</svg>
