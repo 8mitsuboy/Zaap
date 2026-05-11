@@ -1,0 +1,114 @@
+<svg width="100%" viewBox="0 0 680 410" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>送料計算のデシジョンテーブル</title>
+  <desc>会員ステータス・購入金額・支払い方法の3条件とその組み合わせによる送料結果を示すデシジョンテーブル</desc>
+
+  <style>
+    text { font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif; fill: #3d3d3a; }
+    .th { font-size: 13px; font-weight: 500; }
+    .ts { font-size: 11px; font-weight: 400; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #c2c0b6; }
+      .cell-border { stroke: #4a4a46; }
+      .header-cond { fill: #3c3489; }
+      .header-action { fill: #0f6e56; }
+      .header-rule { fill: #444441; }
+      .action-cell { fill: #085041; }
+      .divider { stroke: #9c9a92; }
+      .legend-bg { fill: #2c2c2a; }
+      .note { fill: #9c9a92; }
+    }
+    .cell-border { stroke: #b4b2a9; stroke-width: 0.5; }
+    .header-cond { fill: #3c3489; }
+    .header-action { fill: #0f6e56; }
+    .header-rule { fill: #444441; }
+    .action-cell { fill: #085041; }
+    .divider { stroke: #5f5e5a; stroke-width: 1; }
+    .legend-bg { fill: #f1efe8; }
+    .note { fill: #888780; }
+    .header-text { fill: #fff; }
+  </style>
+
+  <!-- ヘッダー左上 -->
+  <rect x="40" y="20" width="145" height="36" class="header-rule cell-border" rx="4"/>
+  <text class="th header-text" x="112" y="38" text-anchor="middle" dominant-baseline="central">条件 / 規則</text>
+
+  <!-- 規則番号ヘッダー -->
+  <rect x="190" y="20" width="55" height="36" class="header-rule cell-border" rx="0"/><text class="th header-text" x="217" y="38" text-anchor="middle" dominant-baseline="central">1</text>
+  <rect x="248" y="20" width="55" height="36" class="header-rule cell-border" rx="0"/><text class="th header-text" x="275" y="38" text-anchor="middle" dominant-baseline="central">2</text>
+  <rect x="306" y="20" width="55" height="36" class="header-rule cell-border" rx="0"/><text class="th header-text" x="333" y="38" text-anchor="middle" dominant-baseline="central">3</text>
+  <rect x="364" y="20" width="55" height="36" class="header-rule cell-border" rx="0"/><text class="th header-text" x="391" y="38" text-anchor="middle" dominant-baseline="central">4</text>
+  <rect x="422" y="20" width="55" height="36" class="header-rule cell-border" rx="0"/><text class="th header-text" x="449" y="38" text-anchor="middle" dominant-baseline="central">5</text>
+  <rect x="480" y="20" width="55" height="36" class="header-rule cell-border" rx="0"/><text class="th header-text" x="507" y="38" text-anchor="middle" dominant-baseline="central">6</text>
+  <rect x="538" y="20" width="55" height="36" class="header-rule cell-border" rx="0"/><text class="th header-text" x="565" y="38" text-anchor="middle" dominant-baseline="central">7</text>
+  <rect x="596" y="20" width="55" height="36" class="header-rule cell-border" rx="0"/><text class="th header-text" x="623" y="38" text-anchor="middle" dominant-baseline="central">8</text>
+
+  <!-- 条件記述部ラベル -->
+  <rect x="40" y="60" width="145" height="36" class="header-cond cell-border" rx="0"/>
+  <text class="ts header-text" x="112" y="78" text-anchor="middle" dominant-baseline="central">会員ステータス</text>
+  <rect x="40" y="100" width="145" height="36" class="header-cond cell-border" rx="0"/>
+  <text class="ts header-text" x="112" y="118" text-anchor="middle" dominant-baseline="central">購入金額</text>
+  <rect x="40" y="140" width="145" height="36" class="header-cond cell-border" rx="0"/>
+  <text class="ts header-text" x="112" y="158" text-anchor="middle" dominant-baseline="central">支払い方法</text>
+
+  <!-- 条件指定部: 会員ステータス -->
+  <rect x="190" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="217" y="78" text-anchor="middle" dominant-baseline="central">一般</text>
+  <rect x="248" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="275" y="78" text-anchor="middle" dominant-baseline="central">一般</text>
+  <rect x="306" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="333" y="78" text-anchor="middle" dominant-baseline="central">一般</text>
+  <rect x="364" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="391" y="78" text-anchor="middle" dominant-baseline="central">一般</text>
+  <rect x="422" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="449" y="78" text-anchor="middle" dominant-baseline="central">P</text>
+  <rect x="480" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="507" y="78" text-anchor="middle" dominant-baseline="central">P</text>
+  <rect x="538" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="565" y="78" text-anchor="middle" dominant-baseline="central">P</text>
+  <rect x="596" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="623" y="78" text-anchor="middle" dominant-baseline="central">P</text>
+
+  <!-- 条件指定部: 購入金額 -->
+  <rect x="190" y="100" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="217" y="118" text-anchor="middle" dominant-baseline="central">未満</text>
+  <rect x="248" y="100" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="275" y="118" text-anchor="middle" dominant-baseline="central">未満</text>
+  <rect x="306" y="100" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="333" y="118" text-anchor="middle" dominant-baseline="central">以上</text>
+  <rect x="364" y="100" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="391" y="118" text-anchor="middle" dominant-baseline="central">以上</text>
+  <rect x="422" y="100" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="449" y="118" text-anchor="middle" dominant-baseline="central">未満</text>
+  <rect x="480" y="100" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="507" y="118" text-anchor="middle" dominant-baseline="central">未満</text>
+  <rect x="538" y="100" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="565" y="118" text-anchor="middle" dominant-baseline="central">以上</text>
+  <rect x="596" y="100" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="623" y="118" text-anchor="middle" dominant-baseline="central">以上</text>
+
+  <!-- 条件指定部: 支払い方法 -->
+  <rect x="190" y="140" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="217" y="158" text-anchor="middle" dominant-baseline="central">クレカ</text>
+  <rect x="248" y="140" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="275" y="158" text-anchor="middle" dominant-baseline="central">代引き</text>
+  <rect x="306" y="140" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="333" y="158" text-anchor="middle" dominant-baseline="central">クレカ</text>
+  <rect x="364" y="140" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="391" y="158" text-anchor="middle" dominant-baseline="central">代引き</text>
+  <rect x="422" y="140" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="449" y="158" text-anchor="middle" dominant-baseline="central">クレカ</text>
+  <rect x="480" y="140" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="507" y="158" text-anchor="middle" dominant-baseline="central">代引き</text>
+  <rect x="538" y="140" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="565" y="158" text-anchor="middle" dominant-baseline="central">クレカ</text>
+  <rect x="596" y="140" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="623" y="158" text-anchor="middle" dominant-baseline="central">代引き</text>
+
+  <!-- 区切り線 -->
+  <line x1="40" y1="182" x2="651" y2="182" class="divider"/>
+
+  <!-- 動作記述部ラベル -->
+  <rect x="40" y="186" width="145" height="36" class="header-action cell-border" rx="0"/>
+  <text class="ts header-text" x="112" y="204" text-anchor="middle" dominant-baseline="central">送料（期待結果）</text>
+
+  <!-- 動作指定部 -->
+  <rect x="190" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="217" y="204" text-anchor="middle" dominant-baseline="central">500円</text>
+  <rect x="248" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="275" y="204" text-anchor="middle" dominant-baseline="central">830円</text>
+  <rect x="306" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="333" y="204" text-anchor="middle" dominant-baseline="central">無料</text>
+  <rect x="364" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="391" y="204" text-anchor="middle" dominant-baseline="central">330円</text>
+  <rect x="422" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="449" y="204" text-anchor="middle" dominant-baseline="central">250円</text>
+  <rect x="480" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="507" y="204" text-anchor="middle" dominant-baseline="central">580円</text>
+  <rect x="538" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="565" y="204" text-anchor="middle" dominant-baseline="central">無料</text>
+  <rect x="596" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="623" y="204" text-anchor="middle" dominant-baseline="central">330円</text>
+
+  <!-- 凡例 -->
+  <rect x="40" y="242" width="611" height="28" class="legend-bg cell-border" rx="4"/>
+  <text class="ts note" x="56" y="256" dominant-baseline="central">P = プレミアム会員　未満 = 5000円未満　以上 = 5000円以上　代引き = 代引き手数料+330円</text>
+
+  <!-- まとめ -->
+  <text class="ts" x="40" y="296" dominant-baseline="central">2（会員） × 2（金額） × 2（支払い） = 8規則 → 8カバレッジアイテム</text>
+
+  <!-- 構造説明 -->
+  <rect x="40" y="316" width="10" height="10" class="header-cond" rx="2"/>
+  <text class="ts" x="58" y="321" dominant-baseline="central">条件記述部（入力条件の一覧）</text>
+  <rect x="240" y="316" width="10" height="10" class="header-action" rx="2"/>
+  <text class="ts" x="258" y="321" dominant-baseline="central">動作記述部（結果の一覧（送料））</text>
+  <rect x="460" y="316" width="10" height="10" class="header-rule" rx="2"/>
+  <text class="ts" x="478" y="321" dominant-baseline="central">規則（条件の組み合わせ1パターン）</text>
+</svg>

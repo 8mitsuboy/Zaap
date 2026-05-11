@@ -280,6 +280,36 @@ html:not(.dark) .cornell-notes .content td {
   border-color: var(--color-bzine-light-border);
 }
 
+.prose-bzine table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}
+
+.prose-bzine th,
+.prose-bzine td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-bzine-border);
+  text-align: left;
+}
+
+.prose-bzine th {
+  background-color: var(--color-bzine-surface);
+  font-weight: 600;
+  color: var(--color-bzine-accent);
+}
+
+html:not(.dark) .prose-bzine th {
+  background-color: var(--color-bzine-light-surface);
+  border-color: var(--color-bzine-light-border);
+  color: #9a8a50;
+}
+
+html:not(.dark) .prose-bzine td {
+  border-color: var(--color-bzine-light-border);
+}
+
 .prose-bzine p {
   margin-bottom: 1.25em;
 }
