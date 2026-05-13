@@ -51,10 +51,10 @@
   <text class="ts header-text" x="112" y="158" text-anchor="middle" dominant-baseline="central">支払い方法</text>
 
   <!-- 条件指定部: 会員ステータス -->
-  <rect x="190" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="217" y="78" text-anchor="middle" dominant-baseline="central">一般</text>
-  <rect x="248" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="275" y="78" text-anchor="middle" dominant-baseline="central">一般</text>
-  <rect x="306" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="333" y="78" text-anchor="middle" dominant-baseline="central">一般</text>
-  <rect x="364" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="391" y="78" text-anchor="middle" dominant-baseline="central">一般</text>
+  <rect x="190" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="217" y="78" text-anchor="middle" dominant-baseline="central">通常</text>
+  <rect x="248" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="275" y="78" text-anchor="middle" dominant-baseline="central">通常</text>
+  <rect x="306" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="333" y="78" text-anchor="middle" dominant-baseline="central">通常</text>
+  <rect x="364" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="391" y="78" text-anchor="middle" dominant-baseline="central">通常</text>
   <rect x="422" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="449" y="78" text-anchor="middle" dominant-baseline="central">P</text>
   <rect x="480" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="507" y="78" text-anchor="middle" dominant-baseline="central">P</text>
   <rect x="538" y="60" width="55" height="36" fill="none" class="cell-border"/><text class="ts" x="565" y="78" text-anchor="middle" dominant-baseline="central">P</text>
@@ -89,17 +89,17 @@
 
   <!-- 動作指定部 -->
   <rect x="190" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="217" y="204" text-anchor="middle" dominant-baseline="central">500円</text>
-  <rect x="248" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="275" y="204" text-anchor="middle" dominant-baseline="central">830円</text>
+  <rect x="248" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="275" y="204" text-anchor="middle" dominant-baseline="central">800円</text>
   <rect x="306" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="333" y="204" text-anchor="middle" dominant-baseline="central">無料</text>
-  <rect x="364" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="391" y="204" text-anchor="middle" dominant-baseline="central">330円</text>
-  <rect x="422" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="449" y="204" text-anchor="middle" dominant-baseline="central">250円</text>
-  <rect x="480" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="507" y="204" text-anchor="middle" dominant-baseline="central">580円</text>
+  <rect x="364" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="391" y="204" text-anchor="middle" dominant-baseline="central">300円</text>
+  <rect x="422" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="449" y="204" text-anchor="middle" dominant-baseline="central">無料</text>
+  <rect x="480" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="507" y="204" text-anchor="middle" dominant-baseline="central">300円</text>
   <rect x="538" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="565" y="204" text-anchor="middle" dominant-baseline="central">無料</text>
-  <rect x="596" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="623" y="204" text-anchor="middle" dominant-baseline="central">330円</text>
+  <rect x="596" y="186" width="55" height="36" class="action-cell cell-border" rx="0"/><text class="ts header-text" x="623" y="204" text-anchor="middle" dominant-baseline="central">300円</text>
 
   <!-- 凡例 -->
   <rect x="40" y="242" width="611" height="28" class="legend-bg cell-border" rx="4"/>
-  <text class="ts note" x="56" y="256" dominant-baseline="central">P = プレミアム会員　未満 = 5000円未満　以上 = 5000円以上　代引き = 代引き手数料+330円</text>
+  <text class="ts note" x="56" y="256" dominant-baseline="central">P = プレミアム会員　未満 = 5000円未満　以上 = 5000円以上　代引き = 代引き手数料+300円</text>
 
   <!-- まとめ -->
   <text class="ts" x="40" y="296" dominant-baseline="central">2（会員） × 2（金額） × 2（支払い） = 8規則 → 8カバレッジアイテム</text>
